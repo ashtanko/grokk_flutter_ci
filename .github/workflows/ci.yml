@@ -42,6 +42,10 @@ jobs:
       - name: Run tests
         run: flutter test --coverage
 
+      - name: Run coverage
+        run: flutter pub run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --packages=.packages --report-on=lib
+
       - name: Upload coverage to codecov
+        uses: codecov/codecov-action@v2
         run: curl -s https://codecov.io/bash
         shell: bash
